@@ -1,18 +1,21 @@
-const expenses = [
+let expenses = [
   {
+    id: 1,
     category: "Shopping",
     description: "Nintendo Switch",
     amount: 500,
   },
   {
-    category: "Shopping",
-    description: "Nintendo Switch",
-    amount: 500,
+    id: 2,
+    category: "Food",
+    description: "Chifa",
+    amount: 20,
   },
   {
+    id: 3,
     category: "Shopping",
-    description: "Nintendo Switch",
-    amount: 500,
+    description: "TV",
+    amount: 300,
   },
 ];
 
@@ -47,10 +50,15 @@ const createExpenseElement = (expense) => {
   amountElement.textContent = `$ ${expense.amount}`;
   deleteElement.textContent = "Eliminar";
   deleteElement.setAttribute("href", "#");
-
+  
   contentElement.append(categoryElement, descriptionElement);
   actionsElement.append(amountElement, deleteElement);
   expenseElement.append(contentElement, actionsElement);
+
+  deleteElement.addEventListener('click', () => {
+    deleteExpense(expense.id);
+    renderExpenses(expenses);
+  })
 
   return expenseElement;
 };
@@ -66,8 +74,13 @@ const renderExpenses = (expenses) => {
     expensesList.append(expenseElement);
   });
 
+  jsExpenses.innerHTML = "";
   jsExpenses.append(expensesList);
 };
+
+const deleteExpense = (id) => {
+  expenses = expenses.filter(expense => expense.id !== id)
+}
 
 renderExpenses(expenses);
 
