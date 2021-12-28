@@ -1,3 +1,5 @@
+let expenses = getExpenses()
+
 const form = document.querySelector(".js-form");
 
 form.addEventListener("submit", (event) => {
@@ -7,8 +9,9 @@ form.addEventListener("submit", (event) => {
     id: Date.now().toString(36),
     amount: formElements.amount.value,
     category: formElements.category.value,
-    description: formElements.description.value
+    description: formElements.description.value,
   };
-  expenses.push(expense)
-  event.target.reset();
-})
+
+  addExpense(expense);
+  location.assign("/");
+});
