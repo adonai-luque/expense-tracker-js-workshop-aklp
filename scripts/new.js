@@ -1,7 +1,6 @@
 let expenses = getExpenses();
 
 const form = document.querySelector(".js-form");
-const cancelButton = document.querySelector(".js-cancel");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -16,5 +15,3 @@ form.addEventListener("submit", (event) => {
   addExpense(expense);
   location.assign("/");
 });
-
-cancelButton.addEventListener("click", () => location.assign("/"));
